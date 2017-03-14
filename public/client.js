@@ -24,21 +24,21 @@ $(function() {
         if(resp.status == "OK"){
           // APIのレスポンスから住所情報を取得
           var obj = resp.results[0].address_components;
-          var pref_alert = '';
-          var address_alert = '';
+          var new_pref    = '';
+          var new_address = '';
           $.each(obj.reverse(), function(index, val){
             if (-1 != jQuery.inArray('administrative_area_level_1', val['types'])) {
-              pref_alert = val['long_name'];
+              new_pref = val['long_name'];
             }
             if (-1 != jQuery.inArray('locality', val['types'])) {
-              address_alert += val['long_name'];
+              new_address += val['long_name'];
             }
           });
-          if (pref_alert) {
-            //$('#pref_alert').text(pref_alert); // 都道府県
+          if (new_pref) {
+            //$('#pref').text(new_pref); // 今はなし
           }
-          if (address_alert) {
-            $('#address').val(address_alert);
+          if (new_address) {
+            $('#address').val(new_address);
           }
         }
       }
